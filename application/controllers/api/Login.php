@@ -108,7 +108,7 @@ class Login extends REST_Controller
         // Response atau semua kondisi jika berhasil autorisasi
         $userid  = $this->Token_model->get_user($header);
         $id      = $userid['id_user'];
-        $this->Token_model->update_token($id, null);
+        $null    = $this->Token_model->update_token($id, null);
 
         return $this->response([
             'error'   => false,
