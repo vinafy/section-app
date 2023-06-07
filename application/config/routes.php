@@ -67,5 +67,6 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 | -------------------------------------------------------------------------
 */
 
-$route['register']['POST'] = 'api/Register';
-$route['login']['POST'] = 'api/Login';
+$route['register']['POST']            = 'api/Register';
+$route['login']['POST']               = 'api/Login/index_post';
+$route['logout/user']['GET']          = 'api/Login/index_get'; 

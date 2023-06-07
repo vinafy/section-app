@@ -31,7 +31,7 @@ class Register extends REST_Controller
                 'error'   => true,
                 'message' => validation_errors(),
                 'message' => preg_replace('/[^A-Za-z0-9_~`\/@!$.%^#&*\\()+-=]/',' ', validation_errors()),
-            ], 400);
+            ], REST_CONTROLLER::HTTP_BAD_REQUEST);
         } 
         
         else {
@@ -46,7 +46,7 @@ class Register extends REST_Controller
             $this->response([
                 'error'   => false,
                 'message' => 'Registration is successful!'
-            ], 201);
+            ], REST_CONTROLLER::HTTP_CREATED);
         }
     }
 }
