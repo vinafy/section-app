@@ -8,8 +8,7 @@ class Comment extends REST_Controller
 {
     public function __construct(){
         parent::__construct();
-        $this->load->model('Comment_model', 'comment');
-        $this->load->helper('Auth_helper');        
+        $this->load->model('Comment_model', 'comment');      
     }
 
     public function index_get()

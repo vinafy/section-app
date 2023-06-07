@@ -8,8 +8,7 @@ class Forum extends REST_Controller
 {
     public function __construct(){
         parent::__construct();
-        $this->load->model('Forum_model', 'forum');
-        $this->load->helper('Auth_helper');       
+        $this->load->model('Forum_model', 'forum');      
     }
 
     public function index_get()

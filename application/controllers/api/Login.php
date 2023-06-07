@@ -13,7 +13,7 @@ class Login extends REST_Controller
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->helper('Auth_helper');
+        // $this->load->helper('auth_helper');
         $this->load->model('Token_model');
     }
 
