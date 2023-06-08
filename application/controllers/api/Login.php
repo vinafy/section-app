@@ -39,7 +39,6 @@ class Login extends REST_Controller
             $password = $this->input->post('password');
 
             $users = $this->db->get_where('users', ['email' => $email])->row_array();
-            $id    = $users['id_user'];
             
             if (!$users) {
                 $this->response([
@@ -56,6 +55,7 @@ class Login extends REST_Controller
             }
 
             else {
+                $id    = $users['id_user'];
                 $token = $this->generateToken($id);
 
                 $this->response([
