@@ -35,13 +35,19 @@ class Register extends REST_Controller
         } 
         
         else {
-            $data = [
+            $data = array (
                 'full_name'  => $this->input->post('full_name', true),
                 'email'      => $this->input->post('email', true),
                 'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            ];
+            );
 
             $this->Users_model->add_users($data);
+            $id = $this->db->insert_id();
+            $photo = array (
+                'id_user'         => $id,
+                'profile_picture' => 'https://storage.googleapis.com/section-app-389109.appspot.com/default_image.png'
+            );
+            $this->Users_model->add_image($photo);
 
             $this->response([
                 'error'   => false,

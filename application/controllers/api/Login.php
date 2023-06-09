@@ -14,6 +14,7 @@ class Login extends REST_Controller
         // Construct the parent class
         parent::__construct();
         // $this->load->helper('auth_helper');
+        $this->load->model('Users_model');
         $this->load->model('Token_model');
     }
 
@@ -34,7 +35,8 @@ class Login extends REST_Controller
             ], REST_CONTROLLER::HTTP_BAD_REQUEST);
         } 
 
-        else {
+        else 
+        {
             $email    = $this->input->post('email');
             $password = $this->input->post('password');
 
@@ -56,15 +58,17 @@ class Login extends REST_Controller
 
             else {
                 $id    = $users['id_user'];
+                $image = $this->Users_model->get_profile($id);
                 $token = $this->generateToken($id);
 
                 $this->response([
                     'error'   => false,
                     'message' => 'Successful login!',
                     'result'  => array (
-                        'id_user'   => $id,
-                        'full_name' => $users['full_name'],
-                        'token'     => $token,
+                        'id_user'         => $id,
+                        'full_name'       => $users['full_name'],
+                        'profile_picture' => $image['profile_picture'],
+                        'token'           => $token,
                     )
                 ], REST_CONTROLLER::HTTP_OK);
 
@@ -81,7 +85,8 @@ class Login extends REST_Controller
         }
     }
 
-    private function generateToken($id) {
+    private function generateToken($id) 
+    {
         $date = new DateTime();
         $secretkey = 'dgdsfokdofkopditeurweygwyegwxckosoekmdgsjl';
         $payload = array (
