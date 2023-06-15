@@ -35,7 +35,7 @@ import pymysql
 import warnings
 warnings.filterwarnings('ignore')
 
-engine = sqlalchemy.create_engine('mysql+pymysql://api:c23ps210@34.101.137.177:3306/section')
+engine = sqlalchemy.create_engine('mysql+pymysql://User:Password@Hostname:3306/DB_name')
 
 rating = pd.read_sql_table('rating', engine)
 article = pd.read_sql_table('article', engine)
@@ -176,9 +176,9 @@ cached_test = test.batch(1_000).cache()
 
 #model_checkpoint=tf.keras.callbacks.ModelCheckpoint('CIFAR10{epoch:02d}.h5',period=5,save_weights_only=True)
 
-history = model.fit(cached_train, epochs=350)
+history = model.fit(cached_train, epochs=1000)
 
-# Plot the loss and accuracy curves for training and validation (epoch 350)
+# Plot the loss and accuracy curves for training and validation
 plt.plot(history.history['total_loss'], color='b', label="Loss")
 plt.title("Loss")
 plt.xlabel("Number of Epochs")
